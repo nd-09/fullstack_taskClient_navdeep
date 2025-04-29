@@ -31,11 +31,11 @@ const Home: React.FC = () => {
       toast.error(error.message);
     };
 
-    socket.on('newTask', handleNewTask);
+    socket.on('taskAdded', handleNewTask);
     socket.on('taskError', handleTaskError);
 
     return () => {
-      socket.off('newTask', handleNewTask);
+      socket.off('taskAdded', handleNewTask);
       socket.off('taskError', handleTaskError);
     };
   }, [socket]);
@@ -43,7 +43,7 @@ const Home: React.FC = () => {
   // Submit new task
   const handleAddTask = (text: string) => {
     if (!text.trim()) {
-      toast.error('Task cannot be empty!'); 
+      toast.error('Note cannot be empty!'); 
       return;
     }
     const task: NewTask = {
@@ -51,13 +51,13 @@ const Home: React.FC = () => {
       createdAt: new Date().toISOString(),
     };
 
-    addTask(task); // Validated type
-    toast.success('Task added successfully!');
+    addTask(task);
+    toast.success('Note added successfully!');
   };
 
   return (
     <div className="app-container">
-      <h1>To-Do List</h1>
+      <h1>Note App</h1>
       <TaskInput addTask={handleAddTask} />
       <TaskList tasks={tasks} />
       <ToastContainer />

@@ -10,7 +10,7 @@ const TaskInput: React.FC<TaskInputProps> = ({ addTask }) => {
 
   const handleAddTask = () => {
     if (!task.trim()) {
-      toast.error('Task text cannot be empty!');
+      toast.error('Note text cannot be empty!');
     } else {
       addTask(task); 
       setTask(''); 
@@ -23,10 +23,10 @@ const TaskInput: React.FC<TaskInputProps> = ({ addTask }) => {
         type="text"
         value={task}
         onChange={(e) => setTask(e.target.value)}
-        placeholder="Add a new task"
+        placeholder="Add a new note.."
         className="task-input"
       />
-      <button onClick={handleAddTask} className="add-task-btn">Add</button>
+      <button onClick={handleAddTask} className="add-task-btn"><span style={{fontSize:16}}>⊕</span> Add</button>
     </div>
   );
 };

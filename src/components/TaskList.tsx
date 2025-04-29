@@ -11,8 +11,11 @@ const TaskList: React.FC<TaskListProps> = ({ tasks }) => {
       {tasks.length > 0 ? (
         tasks.map((task) => (
           <li key={task.createdAt} className="task-item">
-            <span className="createdAt">{task.text}</span> 
-            <span className="createdAt">{task.createdAt}</span>
+            <div className="note-text">{task.text}</div> 
+            
+            <div className="createdAt">{new Date(task.createdAt).toLocaleDateString()}
+            <span className="createdAt">{new Date(task.createdAt).toLocaleTimeString()}</span>
+            </div>
           </li>
         ))
       ) : (
